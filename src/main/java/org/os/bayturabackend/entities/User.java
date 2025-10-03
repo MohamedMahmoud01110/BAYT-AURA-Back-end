@@ -53,7 +53,7 @@ public abstract class User implements UserDetails {
 
     @Column(name = "profile_picture_url")
     @Builder.Default
-    private String profilePictureUrl = "https://github.com/user-attachments/assets/e4c05593-81cc-4aca-b8e6-571128095fbc" ;
+    private String profilePictureUrl = "https://imgs.search.brave.com/7dqSnfmG9C_8QGLxDhfy7dasxlc5U_SLrFoOufim3oc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9i/L2JjL1Vua25vd25f/cGVyc29uLmpwZw" ;
 
     @Column(name = "profile_picture_id")
     private String profilePictureId;

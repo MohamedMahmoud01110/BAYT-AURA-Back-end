@@ -8,6 +8,7 @@ import org.os.bayturabackend.DTOs.UpdateProfileDTO;
 import org.os.bayturabackend.DTOs.UserResponseDTO;
 import org.os.bayturabackend.entities.NotificationType;
 import org.os.bayturabackend.entities.Provider;
+import org.os.bayturabackend.entities.ProviderStatus;
 import org.os.bayturabackend.entities.User;
 import org.os.bayturabackend.exceptions.DuplicateResourceException;
 import org.os.bayturabackend.exceptions.ResourceNotFoundException;
@@ -41,9 +42,12 @@ public class UserService {
                 .filter(user -> role == null || user.getRole().name().equalsIgnoreCase(role))
 
                 .filter(user -> {
-                    if (status == null) return true;
+                    if (status == null) {
+                        return true;
+                    }
+                    ProviderStatus providerStatus = ProviderStatus.valueOf(status.toUpperCase());
                     if (user instanceof Provider provider) {
-                        return provider.getStatus() != null && provider.getStatus().equals(status);
+                        return provider.getStatus() != null && provider.getStatus().equals(providerStatus);
                     }
                     return false;
                 })
@@ -272,7 +276,7 @@ public class UserService {
                 cloudinary.uploader().destroy(user.getProfilePictureId(), ObjectUtils.emptyMap());
             }
 
-            user.setProfilePictureUrl("https://github.com/user-attachments/assets/e4c05593-81cc-4aca-b8e6-571128095fbc");
+            user.setProfilePictureUrl("https://imgs.search.brave.com/7dqSnfmG9C_8QGLxDhfy7dasxlc5U_SLrFoOufim3oc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9i/L2JjL1Vua25vd25f/cGVyc29uLmpwZw");
             user.setProfilePictureId(null);
 
         }
